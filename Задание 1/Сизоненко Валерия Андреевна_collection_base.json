@@ -1,0 +1,868 @@
+{
+	"info": {
+		"_postman_id": "cd38ee7a-3a59-4618-ac3c-34615bac4efa",
+		"name": "Collection base",
+		"description": "Swagger- [https://reqres.in/api-docs/#/](https://reqres.in/api-docs/#/)\n\nДокументация - [https://reqres.in/](https://reqres.in/)\n\nПолучение API Key - [https://reqres.in/signup](https://reqres.in/signup)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32614637"
+	},
+	"item": [
+		{
+			"name": "register",
+			"item": [
+				{
+					"name": "Тестовые сценарии",
+					"item": [
+						{
+							"name": "✅ Позитивные",
+							"item": [
+								{
+									"name": "Успешная регистрация пользователя с указанием email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 200\", function() {\r",
+													"    pm.response.to.have.status(200)\r",
+													"})\r",
+													"\r",
+													"\r",
+													"pm.test(\"В теле запроса есть данные после успешной регистрации \", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.id).to.eql(4)\r",
+													"   pm.expect(data.token).to.eql(\"QpwL5tke4Pnpja7X4\")\r",
+													"})\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/register",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"register"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Успешная регистрация пользователя с указанием username",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 200\", function() {\r",
+													"    pm.response.to.have.status(200)\r",
+													"})\r",
+													"\r",
+													"\r",
+													"pm.test(\"В теле запроса есть данные после успешной регистрации \", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.id).to.eql(4)\r",
+													"   pm.expect(data.token).to.eql(\"QpwL5tke4Pnpja7X4\")\r",
+													"})\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/register",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"register"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "❌ Негативные",
+							"item": [
+								{
+									"name": "Отсутствует API key",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 401\", function() {\r",
+													"    pm.response.to.have.status(401)\r",
+													"})\r",
+													"\r",
+													"pm.test(\"В теле запроса есть описание ошибки\", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.error).to.eql(\"Missing API key\")\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "https://reqres.in/api/register",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"register"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Отсутствует email или username",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 400\", function() {\r",
+													"    pm.response.to.have.status(400)\r",
+													"})\r",
+													"\r",
+													"pm.test(\"В теле запроса есть описание ошибки\", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.error).to.eql(\"Missing email or username\")\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "https://reqres.in/api/register",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"register"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Отсутствует password при отправке только email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 400\", function() {\r",
+													"    pm.response.to.have.status(400)\r",
+													"})\r",
+													"\r",
+													"pm.test(\"В теле запроса есть описание ошибки, что поле password отсутствует\", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.error).to.eql(\"Missing password\")\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\" : \"mail@mail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/register",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"register"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Отсутствует password при отправке только username",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 400\", function() {\r",
+													"    pm.response.to.have.status(400)\r",
+													"})\r",
+													"\r",
+													"pm.test(\"В теле запроса есть описание ошибки, что поле password отсутствует\", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.error).to.eql(\"Missing password\")\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\" : \"username\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/register",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"register"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Ошибка, только определенные пользователи могут зарегестрироваться",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 400\", function() {\r",
+													"    pm.response.to.have.status(400)\r",
+													"})\r",
+													"\r",
+													"pm.test(\"В теле запроса есть описание ошибки, что только определенные пользователи могут зарегестрироваться\", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.error).to.eql(\"Note: Only defined users succeed registration\")\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\" : \"mail@mail.com\",\r\n    \"password\": \"qwerty123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/register",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"register"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "Тестовые сценарии",
+					"item": [
+						{
+							"name": "✅ Позитивные",
+							"item": [
+								{
+									"name": "Успешный логин c email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 200\", function() {\r",
+													"    pm.response.to.have.status(200)\r",
+													"})\r",
+													"\r",
+													"\r",
+													"pm.test(\"В теле запроса есть данные после успешной регистрации \", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.token).to.eql(\"QpwL5tke4Pnpja7X4\")\r",
+													"})\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"cityslicka\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/login",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Успешный логин c username",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 200\", function() {\r",
+													"    pm.response.to.have.status(200)\r",
+													"})\r",
+													"\r",
+													"\r",
+													"pm.test(\"В теле запроса есть данные после успешной регистрации \", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.token).to.eql(\"QpwL5tke4Pnpja7X4\")\r",
+													"})\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"eve.holt@reqres.in\",\r\n    \"password\": \"cityslicka\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/login",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"login"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "❌ Негативные",
+							"item": [
+								{
+									"name": "Отсутствует API key",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 401\", function() {\r",
+													"    pm.response.to.have.status(401)\r",
+													"})\r",
+													"\r",
+													"pm.test(\"В теле запроса есть описание ошибки\", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.error).to.eql(\"Missing API key\")\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "https://reqres.in/api/login",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Пользователь не найден",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 400\", function() {\r",
+													"    pm.response.to.have.status(400)\r",
+													"})\r",
+													"\r",
+													"pm.test(\"В теле запроса есть описание ошибки\", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.error).to.eql(\"user not found\")\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"eve.holt\",\r\n    \"password\": \"cityslicka\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/login",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Отсутствует пароль",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Запрос возвращает 400\", function() {\r",
+													"    pm.response.to.have.status(400)\r",
+													"})\r",
+													"\r",
+													"pm.test(\"В теле запроса есть описание ошибки\", function() {\r",
+													"   const data = pm.response.json()\r",
+													"\r",
+													"   pm.expect(data.error).to.eql(\"Missing password\")\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/login",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"login"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"item": [
+				{
+					"name": "Тестовые сценарии",
+					"item": [
+						{
+							"name": "✅ Позитивные",
+							"item": [
+								{
+									"name": "Успешный logout",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "x-api-key",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "reqres-free-v1",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/logout",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"logout"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "❌ Негативные",
+							"item": [
+								{
+									"name": "Отсутствует API key Copy",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "https://reqres.in/api/logout",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"logout"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
